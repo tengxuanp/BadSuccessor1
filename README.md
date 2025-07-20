@@ -15,10 +15,14 @@ BadSuccessor exploits misconfigured Delegated Managed Service Account (dMSA) per
 The tool contains two modules, one to identify exploitable OUs and one to create the dMSA.
 ```
 Usage:
+  # Enumerate and list all Organizational Units you have write access to.
   BadSuccessor find
-    Enumerate and list all Organizational Units you have write access to.
 
+  # Create the malicious dMSA in the target OU
   BadSuccessor escalate -targetOU <OU=…,DC=…> -dmsa <name> -targetUser <full DN> [-dc-ip <host>] -dnshostname <hostname> (-machine <name$> | -user <username>)
+
+  # Cleanup malicious dMSA
+  BadSuccessor.exe del dMSAAccountName "OU=ServiceAccounts,DC=example,DC=com"
 
 Examples:
   BadSuccessor find
