@@ -13,7 +13,12 @@ jobs:
       # 1. Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        
+      - name: Install .NET Framework 4.6.1 Developer Pack
+        run: |
+          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_Enterprise.exe -OutFile vs_installer.exe
+          Start-Process -FilePath vs_installer.exe -ArgumentList '--add Microsoft.Net.Component.4.6.1.TargetingPack --quiet --wait' -Wait
+          
       # 2. Setup MSBuild
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.3.1
